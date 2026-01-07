@@ -1,0 +1,55 @@
+# platform-iac-cli Configuration File
+# Version: 1.0
+# Environment: Development
+
+# General project settings
+project:
+  name: "platform-iac"
+  owner: "devsecops"
+  region: "eu-central-1" # Frankfurt, preferred for Poland-based operations
+
+# IaC Orchestration settings (Terragrunt/OpenTofu)
+orchestration:
+  tool: "terragrunt"
+  version: "v0.55.0"
+  path: "./infrastructure"
+  environments:
+    - name: "sandbox"
+      account_id: "REPLACE_WITH_YOUR_ID"
+    - name: "staging"
+      account_id: "REPLACE_WITH_YOUR_ID"
+
+# Security & Compliance (CKS Focused)
+security:
+  scanners:
+    tfsec:
+      enabled: true
+      fail_on_high: true
+    checkov:
+      enabled: true
+      soft_fail: false
+  # Ansible compliance settings
+  ansible:
+    force_fqcn: true # Enforce usage of ansible.build.systemd
+    collections:
+      - "ansible.build"
+      - "amazon.aws"
+
+# Advanced Networking (VPC Lattice)
+networking:
+  lattice:
+    enabled: true
+    service_network_name: "platform-mesh"
+    auth_policy: "aws-iam" # Simplified IAM-based zero trust
+
+# Agentic / MCP Integration
+agentic:
+  mcp_server:
+    enabled: true
+    port: 9090
+    log_format: "json" # Required for AI indexing
+
+# Observability (ADR-0002)
+logging:
+  level: "info" # debug, info, warn, error
+  format: "text" # Switch to 'json' for machine analysis
