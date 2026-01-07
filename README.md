@@ -33,7 +33,7 @@ This project follows the **Standard Go Project Layout**.
 ### Architectural Decision Records (ADR)
 All major technical decisions are documented in the `docs/adr/` directory.
 - [ADR-0001: Choice of Directory Structure](docs/adr/0001-directory-structure.md)
-- [ADR-0002: Logging Framework Choice](docs/adr/0002-logging-framework.md)
+- [ADR-0002: Logging Framework Choice](docs/adr/0002-logging-framework-choice.md)
 
 ### Git Worktree Workflow
 To maintain high velocity and clean context switching, this repository is optimized for `git worktree`:
